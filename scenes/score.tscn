@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg7cbk6oodhv"]
+
+[ext_resource type="Script" path="res://scripts/ScoreCounter.gd" id="1_e2g0r"]
+
+[node name="ScoreCounter" type="Node"]
+script = ExtResource("1_e2g0r")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
