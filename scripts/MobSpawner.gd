@@ -3,7 +3,7 @@ class_name MobSpawner extends Node
 const _MIN_SPEED = 150.0
 const _MAX_SPEED = 250.0
 
-@export var mob_scene: PackedScene
+@export var mob_scenes: Array[PackedScene]
 @export var mob_parent_node: Node
 @export var spawn_period := 0.75:
 	set(value):
@@ -27,9 +27,14 @@ func remove_all_mobs():
 	get_tree().call_group("Mobs", "queue_free")
 
 func _spawn_mob():
-	var mob := mob_scene.instantiate()
+	var mob := _instantiate_random_mob()
 	_setup_mob(mob)
 	mob_parent_node.add_child(mob)
+	
+func _instantiate_random_mob() -> Node:
+	var mob_index = randi() % mob_scenes.size()
+	var mob_scene = mob_scenes[mob_index]
+	return mob_scene.instantiate()
 
 func _setup_mob(mob: Node):
 	var mob_spawn_location = _random_location()

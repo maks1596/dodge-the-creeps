@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2qtpjapsueab"]
+
+[ext_resource type="PackedScene" uid="uid://doryle83h1hy3" path="res://scenes/mob/mob.tscn" id="1_epbjo"]
+[ext_resource type="Texture2D" uid="uid://c1c5bd0p3lu2s" path="res://art/enemyWalking_1.png" id="2_d1pg4"]
+[ext_resource type="Texture2D" uid="uid://sm7nrgrchnjb" path="res://art/enemyWalking_2.png" id="3_svxji"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdnp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d1pg4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_svxji")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wu8nf"]
+radius = 36.0
+height = 100.0
+
+[node name="Mob" instance=ExtResource("1_epbjo")]
+position = Vector2(50, 36)
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_pdnp6")
+autoplay = "default"
+frame_progress = 0.759375
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wu8nf")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-50, -36)
+scale = Vector2(5, 3.6)
